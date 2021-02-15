@@ -38,7 +38,6 @@ struct ContentView: View {
                         .cancel()
                     ])
                 }
-            Text("Hello, World!")
                 .blur(radius: blurAmount)
 
             Slider(value: blur, in: 0...20)
