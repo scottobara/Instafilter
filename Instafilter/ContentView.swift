@@ -85,7 +85,7 @@ struct ContentView: View {
                         Text("Center")
                             .frame(width: 70)
                         Slider(value: radius)
-                    }
+                    }.transition(.slide)
                 }
                 
 
@@ -157,10 +157,14 @@ struct ContentView: View {
 
         if inputKeys.contains(kCIInputIntensityKey) && inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(filterIntensity, forKey: kCIInputIntensityKey)
             currentFilter.setValue(filterRadius * 200, forKey: kCIInputRadiusKey)
-            showRadiusSlider = true
+            withAnimation {
+                showRadiusSlider = true
+            }
         }
         else {
-            showRadiusSlider = false
+            withAnimation {
+                showRadiusSlider = false
+            }
             if inputKeys.contains(kCIInputIntensityKey) { currentFilter.setValue(filterIntensity, forKey: kCIInputIntensityKey) }
             if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(filterIntensity * 200, forKey: kCIInputRadiusKey) }
             if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(filterIntensity * 10, forKey: kCIInputScaleKey) }
